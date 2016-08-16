@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -73,10 +74,29 @@ WSGI_APPLICATION = 'dj02_two.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+DATABASE_NAME       = 'db_practice'
+DATABASE_USER       = 'root'
+DATABASE_PASSWORD   = ''
+DATABASE_HOST       = 'localhost'
+DATABASE_PORT       = 3306
+
+
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': DATABASE_NAME,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
+        'HOST': DATABASE_HOST,
+        'PORT': DATABASE_PORT,
+        'TEST_CHARSET': 'UTF8',
+        'OPTIONS': {
+            "init_command": "SET default_storage_engine=INNODB;SET sql_mode='STRICT_TRANS_TABLES';"
+        },
     }
 }
 
@@ -118,3 +138,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static/'
